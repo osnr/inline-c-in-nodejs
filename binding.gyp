@@ -1,8 +1,9 @@
 {
   "targets": [
     {
-      "target_name": "binding",
-      "sources": [ "addon.c", "addon_node.c" ]
+      "target_name": "tcc",
+      "sources": [ "addon.c", "addon_node.c" ],
+      "libraries": [ "/usr/local/lib/libtcc.a" ]
     }
   ]
 }

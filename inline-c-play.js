@@ -1,6 +1,9 @@
-const c = require('inline-c')();
-c.header(`#include <stdio.h>`);
+const c = require('./inline-c');
+c.header`#include <stdio.h>`;
 
-for (let i = 0; i < 10; i++) {
-  c`printf("%d\n", ${i})`;
-}
+c.header`int i;`;
+
+c`i = 0;`;
+['One', 'two', 'three'].forEach(word => {
+  c`printf("${word}: %d\n", i++);`;
+});

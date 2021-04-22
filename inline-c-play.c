@@ -10,5 +10,5 @@ int main() {
     void* mem = malloc(size);
     tcc_relocate(s, mem);
     int (*func)(int x, int y) = tcc_get_symbol(s, "foo");
-    printf("23 + 42 = %d\n", func(23, 42));
+    /* printf("23 + 42 = %d\n", func(23, 42)); */
 }
