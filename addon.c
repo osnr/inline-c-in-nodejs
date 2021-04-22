@@ -42,7 +42,8 @@ Load(napi_env env, napi_callback_info info) {
     char dllName[1000];
     snprintf(dllName, sizeof(dllName), "%s.so", funcName);
 
-    void* handle = dlopen(dllName, RTLD_LAZY);
+    void* handle = dlopen(dllName, RTLD_LAZY | RTLD_GLOBAL);
+    /* printf("&i = %p\n", dlsym(handle, "i")); */
     void (*func)() = dlsym(handle, funcName);
     func();
 
