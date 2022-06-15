@@ -22,6 +22,10 @@ $ node inline-c-play.js
 computer's C compiler, loads the emitted dynamic library into RAM, and
 calls into it is in [`addon.c`](addon.c).
 
+## license
+
+MIT
+
 ## notes
 
 I was testing this 'inline C' stuff in Node.js last year out of
