@@ -1,22 +1,42 @@
 # inline-c-in-nodejs
 
+embed C directly into your Node.js program! 'no FFI'
+
 <a href="https://twitter.com/rsnous/status/1385168967279333376"><img src="doc/hmm.png" width="450"></a>
 
 (<https://twitter.com/rsnous/status/1385168967279333376>)
 
-([also thinking about
-how](https://twitter.com/rsnous/status/1385365317900144643) the LuaJIT
-FFI just has a parser for C declarations built in, how being able to
-copy and paste stuff straight from header files is so much more
-comfortable than transcribing the types into Scheme or Python or JS or
-whatever other weird FFI syntax)
+[`inline-c-play.js`](inline-c-play.js) has a usage example.
 
-was testing 'inline C' in node.js last year, and have recently wanted
-to finally put this up to explain to people.
+To run (haven't tested recently -- you probably need to `npm install` or
+some other stuff):
 
-I think part 
+```
+$ node inline-c-play.js
+```
+
+- The JS library that implements the `inline-c` module is in
+[`inline-c.js`](inline-c.js).
+
+- The C library / Node.js addon that actually calls out to your
+computer's C compiler, loads the emitted dynamic library into RAM, and
+calls into it is in [`addon.c`](addon.c).
 
 ## notes
+
+I was testing this 'inline C' stuff in Node.js last year out of
+curiosity (JS has some nice properties, lots of people know it, how
+would it stack up against Tcl or Lua for this?), and recently wanted
+to finally put this up to explain to people.
+
+I think the conclusion is, it doesn't stack up great, at least on the
+Node platform. The Node FFI is pretty horrible and ugly to work with
+-- there are so many files and build things you have to get right, you
+can tell just by looking at this repo. It's clearly not a first-class
+use for Node.js. You need some dependency to make it remotely clean
+and not need C++, etc. ([QuickJS](https://bellard.org/quickjs/) might
+be better if you just want the JS language and not the Node/V8
+runtime.)
 
 I wrote about this in [newsletter](https://github.com/sponsors/osnr) last year:
 
@@ -37,7 +57,7 @@ I wrote about this in [newsletter](https://github.com/sponsors/osnr) last year:
 > and a C file that provides access to external capabilities. it should
 > be [one file](https://twitter.com/rsnous/status/1353420813098131457)! the stuff that I'll want to consult or change at the same
 > time should live in the same place, regardless of whether it happens
-> to be C code or JavaScript code or prose.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+> to be C code or JavaScript code or prose.
 >
 > (also reminds me abstractly of [the Footsteps extension](https://twitter.com/Wattenberger/status/1361342759102201860), and of the
 > super-lightweight plumb-based 'hyperlinks' in Acme. I think navigation
@@ -54,3 +74,9 @@ I wrote about this in [newsletter](https://github.com/sponsors/osnr) last year:
 > when I want to play with something, I don't have to make up some
 > channel on the spot to call back into C to figure out what's going on)
 
+([think about
+how](https://twitter.com/rsnous/status/1385365317900144643) the LuaJIT
+FFI just has a parser for C declarations built in, how being able to
+copy and paste stuff straight from header files is so much more
+comfortable than transcribing the types into Scheme or Python or JS or
+whatever other weird FFI syntax)
