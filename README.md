@@ -78,6 +78,13 @@ I wrote about this in [newsletter](https://github.com/sponsors/osnr) last year:
 > when I want to play with something, I don't have to make up some
 > channel on the spot to call back into C to figure out what's going on)
 
+also see
+[Critcl](https://andreas-kupries.github.io/critcl/doc/files/critcl_pkg.html#section1)
+-- I have
+[critcl-pointer-play](https://github.com/osnr/critcl-pointer-play) and
+[little-fbdev-critcl-play](https://github.com/osnr/little-fbdev-critcl-play)
+as examples I've been playing around w/ more recently
+
 ([think about
 how](https://twitter.com/rsnous/status/1385365317900144643) the LuaJIT
 FFI just has a parser for C declarations built in, how being able to
